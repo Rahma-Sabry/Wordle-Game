@@ -12,6 +12,9 @@ def main():
             try:
                 game.add_attempt(attempt)
                 print(f"Attempt '{attempt}' added. Remaining attempts: {game.remaining_attempts}")
+                letter_states = game.get_letter_states(attempt)
+                for letter_state in letter_states:
+                    print(f"Letter: {letter_state.letter}, In word: {letter_state.is_in_secret_word}, Correct position: {letter_state.is_correct_position}")
             except ValueError as e:
                 print(e)    
         else:

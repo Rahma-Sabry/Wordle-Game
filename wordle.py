@@ -1,3 +1,4 @@
+from letterState import LetterState
 class Wordle:
     MAX_AteMPTS = 6
     WORD_LENGTH = 5
@@ -23,6 +24,14 @@ class Wordle:
             raise ValueError("Attempt already made.")
         self.attempts.append(attempt)
 
+    def get_letter_states(self, attempt: str):
+        result = []
+        for i in range(self.WORD_LENGTH):
+            letter_state = LetterState(attempt[i])
+            letter_state.is_in_secret_word = attempt[i] in self.secret_word
+            letter_state.is_correct_position = attempt[i] == self.secret_word[i]
+            result.append(letter_state)
+        return result
     @property
     def can_attempt(self):
         return len(self.attempts) < self.MAX_AteMPTS and not self.is_solved
