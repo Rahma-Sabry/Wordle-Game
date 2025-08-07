@@ -1,10 +1,12 @@
 import random
-with open("words.txt", 'r') as file:
-        words = [line.strip() for line in file if line.strip()]
-def randomWordFromSEt():  
-    return random.choice(words)
-def validateWord(gussedWord):
-    if gussedWord in words:
-        return True
-    else:
-        return False
+
+class DatasetHandel:
+    def __init__(self, filepath="words.txt"):
+        with open(filepath, 'r') as file:
+            self.words = [line.strip() for line in file if line.strip()]
+
+    def random_word_from_set(self):
+        return random.choice(self.words)
+
+    def validate_word(self, guessed_word):
+        return guessed_word in self.words
